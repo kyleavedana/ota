@@ -1,0 +1,7 @@
+{
+  "ignorePaths": ["**/*.{json,js,ts}"],
+  "dictionaries": ["dictionary"],
+  "dictionaryDefinitions": [
+    { "name": "dictionary", "path": "cspell.dictionary.txt" }
+  ]
+}

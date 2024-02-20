@@ -1,4 +1,4 @@
 {
   "*.{js,ts}": ["prettier --write", "eslint"],
-  "*.md": ["prettier --write", "markdownlint-cli2"]
+  "*.md": ["prettier --write", "markdownlint-cli2", "cspell"]
 }
