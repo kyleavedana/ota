@@ -1,4 +1,11 @@
 {
-  "*.{js,ts}": ["prettier --write", "eslint"],
-  "*.md": ["prettier --write", "markdownlint-cli2", "cspell"]
+  "*.{js,ts}": [
+    "prettier --cache --cache-strategy content --write",
+    "eslint --cache"
+  ],
+  "*.md": [
+    "prettier --cache --cache-strategy content --write",
+    "markdownlint-cli2",
+    "cspell"
+  ]
 }
