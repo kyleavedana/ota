@@ -17,9 +17,15 @@ export function getNotes(req: Request, res: Response) {
 
 export function getNote(req: Request, res: Response) {
   const { id } = req.params as { id: string };
-  const note = notes.find((note) => note.id === id);
+  const index = notes.findIndex((note) => note.id === id);
+
+  if (index < 0) {
+    res.status(404);
+    return res.send();
+  }
+
   res.status(200);
-  res.json(note);
+  res.json(notes[index]);
 }
 
 export function createNote(req: Request, res: Response) {
@@ -36,8 +42,8 @@ export function updateNote(req: Request, res: Response) {
   const index = notes.findIndex((note) => note.id === id);
 
   if (index < 0) {
-    res.status(400);
-    res.send();
+    res.status(404);
+    return res.send();
   }
 
   const { title, body } = req.body as Note;
@@ -48,6 +54,14 @@ export function updateNote(req: Request, res: Response) {
 
 export function removeNote(req: Request, res: Response) {
   const { id } = req.params as { id: string };
+
+  const index = notes.findIndex((note) => note.id === id);
+
+  if (index < 0) {
+    res.status(404);
+    return res.send();
+  }
+
   notes = notes.filter((note) => note.id !== id);
   res.status(204);
   res.send();

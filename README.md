@@ -2,7 +2,7 @@
 
 OTA Coding Test
 
-## Installation
+## Installation and Running the application
 
 System Requirements:
 
@@ -14,3 +14,7 @@ cd ota
 npm ci
 npm start
 ```
+
+## Swagger
+
+Check the `/api-docs` path to view Swagger
