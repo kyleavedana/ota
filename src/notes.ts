@@ -17,6 +17,12 @@ export function getNotes(req: Request, res: Response) {
 
 export function getNote(req: Request, res: Response) {
   const { id } = req.params as { id: string };
+
+  if (!id) {
+    res.status(400);
+    return res.send();
+  }
+
   const index = notes.findIndex((note) => note.id === id);
 
   if (index < 0) {
@@ -30,6 +36,12 @@ export function getNote(req: Request, res: Response) {
 
 export function createNote(req: Request, res: Response) {
   const { title, body } = req.body as Note;
+
+  if (!title || !body) {
+    res.status(400);
+    return res.send();
+  }
+
   // eslint-disable-next-line @cspell/spellchecker, @typescript-eslint/no-unsafe-call
   const id = uuidv4() as unknown as string;
   notes.push({ id, title, body });
@@ -39,6 +51,12 @@ export function createNote(req: Request, res: Response) {
 
 export function updateNote(req: Request, res: Response) {
   const { id } = req.params as { id: string };
+
+  if (!id) {
+    res.status(400);
+    return res.send();
+  }
+
   const index = notes.findIndex((note) => note.id === id);
 
   if (index < 0) {
@@ -47,6 +65,12 @@ export function updateNote(req: Request, res: Response) {
   }
 
   const { title, body } = req.body as Note;
+
+  if (!title || !body) {
+    res.status(400);
+    return res.send();
+  }
+
   notes[index] = { id, title, body };
   res.status(201);
   res.send(notes[index]);
@@ -54,6 +78,11 @@ export function updateNote(req: Request, res: Response) {
 
 export function removeNote(req: Request, res: Response) {
   const { id } = req.params as { id: string };
+
+  if (!id) {
+    res.status(400);
+    return res.send();
+  }
 
   const index = notes.findIndex((note) => note.id === id);
 

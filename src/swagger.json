@@ -53,6 +53,9 @@
         "responses": {
           "201": {
             "description": "Note created successfully"
+          },
+          "400": {
+            "description": "Property title or body must be defined"
           }
         }
       }
@@ -84,6 +87,9 @@
           },
           "404": {
             "description": "Note not found"
+          },
+          "400": {
+            "description": "Property id must be defined"
           }
         }
       },
@@ -116,6 +122,9 @@
           },
           "404": {
             "description": "Note not found"
+          },
+          "400": {
+            "description": "Property id, title, or body must be defined"
           }
         }
       },
@@ -138,6 +147,9 @@
           },
           "404": {
             "description": "Note not found"
+          },
+          "400": {
+            "description": "Property id must be defined"
           }
         }
       }
@@ -163,12 +175,15 @@
         "type": "object",
         "properties": {
           "title": {
-            "type": "string"
+            "type": "string",
+            "nullable": false
           },
           "body": {
-            "type": "string"
+            "type": "string",
+            "nullable": false
           }
-        }
+        },
+        "required": ["title", "body"]
       }
     }
   }
