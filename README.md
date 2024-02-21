@@ -15,6 +15,12 @@ npm ci
 npm start
 ```
 
+set .env values
+
+```text
+PORT=3000 # Whatever port number you prefer
+```
+
 ## Swagger
 
 Check the `/api-docs` path to view Swagger
