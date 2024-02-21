@@ -11,12 +11,14 @@ interface Note {
 let notes: Note[] = [];
 
 export function getNotes(req: Request, res: Response) {
+  res.status(200);
   res.json(notes);
 }
 
 export function getNote(req: Request, res: Response) {
   const { id } = req.params as { id: string };
   const note = notes.find((note) => note.id === id);
+  res.status(200);
   res.json(note);
 }
 
@@ -25,19 +27,28 @@ export function createNote(req: Request, res: Response) {
   // eslint-disable-next-line @cspell/spellchecker, @typescript-eslint/no-unsafe-call
   const id = uuidv4() as unknown as string;
   notes.push({ id, title, body });
-  res.send();
+  res.status(201);
+  res.send({ id, title, body });
 }
 
 export function updateNote(req: Request, res: Response) {
-  const { id } = req.query as { id: string };
+  const { id } = req.params as { id: string };
   const index = notes.findIndex((note) => note.id === id);
+
+  if (index < 0) {
+    res.status(400);
+    res.send();
+  }
+
   const { title, body } = req.body as Note;
   notes[index] = { id, title, body };
-  res.send();
+  res.status(201);
+  res.send(notes[index]);
 }
 
 export function removeNote(req: Request, res: Response) {
   const { id } = req.params as { id: string };
   notes = notes.filter((note) => note.id !== id);
+  res.status(204);
   res.send();
 }
